@@ -1,16 +1,21 @@
 // DTO: Data Transfer Object
 
 import { IsString } from 'class-validator';
-export class UpdateTaskDto {
-  @IsString()
-  readonly taskId?: string;
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateTaskDto } from './create-task.dto';
 
-  @IsString()
-  readonly name?: string;
+export class UpdateTaskDto extends PartialType(CreateTaskDto) {}
 
-  @IsString()
-  readonly completionDate?: string;
+// export class UpdateTaskDto {
+//   @IsString()
+//   readonly taskId?: string;
 
-  @IsString({ each: true })
-  readonly categories?: string[];
-}
+//   @IsString()
+//   readonly name?: string;
+
+//   @IsString()
+//   readonly completionDate?: string;
+
+//   @IsString({ each: true })
+//   readonly categories?: string[];
+// }
