@@ -9,6 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
+import { UpdateTaskDto } from './dto/update-task.dto';
 import { Task } from './entities/task.entity';
 import { TasksService } from './tasks.service';
 
@@ -44,7 +45,7 @@ export class TasksController {
   }
 
   @Patch(':id')
-  updateTask(@Param('id') id: number, @Body() updateData: CreateTaskDto) {
+  updateTask(@Param('id') id: number, @Body() updateData: UpdateTaskDto) {
     return this.tasksService.updateTask(id, updateData);
   }
 }
