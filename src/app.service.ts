@@ -8,6 +8,6 @@ export class AppService {
   }
 
   getHi(): string {
-    return "Hello Jieun"
+    return 'Hello Jieun';
   }
 }

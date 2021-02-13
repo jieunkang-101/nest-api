@@ -1,47 +1,49 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
+import { CreateTaskDto } from './dto/create-task.dto';
+import { Task } from './entities/task.entity';
+import { TasksService } from './tasks.service';
 
 @Controller('tasks')
 export class TasksController {
+  constructor(private readonly tasksService: TasksService) {}
 
   @Get()
-  getAll() {
-    return "All tasks";
+  getTasks(): Task[] {
+    return this.tasksService.getTasks();
   }
 
-  // should place before ":id"
-  @Get("search")
-  searchTask(@Query('date') completionDate:string) {
-    return `Due on ${completionDate}: tasks`
+  // "search" should place before ":id"
+  @Get('search')
+  searchTask(@Query('date') completionDate: string) {
+    return `Due on ${completionDate}: tasks`;
   }
 
   @Get('/:id')
-  getTask(@Param('id') taskId: string) {
-    return `This will return a task with the id: ${taskId}`
+  getTask(@Param('id') id: string): Task {
+    return this.tasksService.getTask(id);
   }
 
   @Post()
-  createTask(@Body() taskData) {
-    return taskData;
+  createTask(@Body() taskData: CreateTaskDto) {
+    return this.tasksService.createTask(taskData);
   }
 
   @Delete(':id')
-  deleteTask(@Param('id') taskId: string) {
-    return `This will delete a task with the id: ${taskId}`
+  deleteTask(@Param('id') id: string) {
+    return this.tasksService.deleteTask(id);
   }
 
   @Patch(':id')
-  updateTask(@Param('id') taskId: string, @Body() updateData) {
-    return {
-      updatedTask: taskId,
-      updateData
-      //...updateData
-    }
+  updateTask(@Param('id') id: string, @Body() updateData: CreateTaskDto) {
+    return this.tasksService.updateTask(id, updateData);
   }
 }
-
-
-// {
-// 	"taskId": "abc-123-1",
-//   "name": "Learning NestJS",
-//   "completionDate": "2021-02-14",
-// }
