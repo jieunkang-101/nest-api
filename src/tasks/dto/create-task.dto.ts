@@ -2,7 +2,6 @@
 
 import { IsString } from 'class-validator';
 export class CreateTaskDto {
-  // readonly id: number;
   @IsString()
   readonly taskId: string;
 

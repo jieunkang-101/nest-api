@@ -9,6 +9,8 @@ async function bootstrap() {
       whitelist: true, // validator will strip validated object of any properties that do not have any decorators.
 
       forbidNonWhitelisted: true, // instead of stripping non-whitelisted properties validator will throw an error
+
+      transform: true,
     })
   );
 

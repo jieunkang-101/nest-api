@@ -28,7 +28,8 @@ export class TasksController {
   }
 
   @Get('/:id')
-  getTask(@Param('id') id: string): Task {
+  getTask(@Param('id') id: number): Task {
+    console.log(typeof id);
     return this.tasksService.getTask(id);
   }
 
@@ -38,12 +39,12 @@ export class TasksController {
   }
 
   @Delete(':id')
-  deleteTask(@Param('id') id: string) {
+  deleteTask(@Param('id') id: number) {
     return this.tasksService.deleteTask(id);
   }
 
   @Patch(':id')
-  updateTask(@Param('id') id: string, @Body() updateData: CreateTaskDto) {
+  updateTask(@Param('id') id: number, @Body() updateData: CreateTaskDto) {
     return this.tasksService.updateTask(id, updateData);
   }
 }
