@@ -4,7 +4,13 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true, // validator will strip validated object of any properties that do not have any decorators.
+
+      forbidNonWhitelisted: true, // instead of stripping non-whitelisted properties validator will throw an error
+    })
+  );
 
   await app.listen(3000);
 }
