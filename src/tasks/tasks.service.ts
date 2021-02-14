@@ -11,6 +11,7 @@ export class TasksService {
     return this.tasks;
   }
 
+  // url id should be string, but transform from ValidationPipe is able to handle id as number.
   getTask(id: number): Task {
     const task = this.tasks.find((t) => t.id === id);
     //"+" => same as parseInt
