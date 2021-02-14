@@ -8,7 +8,6 @@ export class TasksService {
   private tasks: Task[] = [];
 
   getTasks(): Task[] {
-    console.log(this.tasks);
     return this.tasks;
   }
 

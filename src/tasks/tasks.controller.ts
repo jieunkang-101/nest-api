@@ -30,7 +30,6 @@ export class TasksController {
 
   @Get('/:id')
   getTask(@Param('id') id: number): Task {
-    console.log(typeof id);
     return this.tasksService.getTask(id);
   }
 
