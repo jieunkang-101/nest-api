@@ -3,7 +3,7 @@ import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { Task } from './entities/task.entity';
 
-@Injectable()
+@Injectable() // dependency injection
 export class TasksService {
   private tasks: Task[] = [];
 
